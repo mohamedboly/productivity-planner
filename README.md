@@ -13,4 +13,4 @@ A webapp for personal productivity using Pomodoro technique.
 > Open PR to merge in 'develop'.
 > One reviewer is required.
 > CI steps are mandatory.
-> Then merge accepted ! n
+> Then merge accepted !
