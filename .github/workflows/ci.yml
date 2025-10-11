@@ -1,9 +1,9 @@
-name: CI
+name: Webapp build
 
 on:
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22.13]
+        node-version: [20.12]
 
     steps:
       # Vérification du dépôt
@@ -30,26 +30,19 @@ jobs:
 
       # Audit de sécurité
       - name: Audit
-        run: npm audit --audit-level=high
+        run: npm audit
 
       # Vérification de la signature des audits
       - name: Audit Signature
-        run: npm audit signatures --audit-level=high
+        run: npm audit signatures
 
       # Linter
       - name: Lint
         run: npm run lint
 
-      # Set environment variables
-      - name: Create environment file
-        run: |
-          mkdir src/environments
-          echo "Creating production environment file..."
-          echo "${{ secrets.ENVIRONMENT_PRODUCTION_FILE }}" >> src/environments/environment.ts
-
       # Tests
-      - name: Test
-        #run: npm run test
+      #- name: Test
+      #  run: npm run test:ci
 
       # Build
       - name: Build
