@@ -50,6 +50,7 @@ jobs:
           mkdir environments
           echo "Creating production environment file..."
           echo "${{ secrets.FIREBASE_CONFIG }}" >> environments/environment.ts
+          echo "${{ secrets.FIREBASE_CONFIG }}" >> environments/environment.prod.ts
 
       # Build
       - name: Build
