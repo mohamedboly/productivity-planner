@@ -48,8 +48,8 @@ jobs:
           echo "${{ secrets.ENVIRONMENT_PRODUCTION_FILE }}" >> src/environments/environment.ts
 
       # Tests
-      - name: Test
-        #run: npm run test
+      #- name: Test
+      #  run: npm run test
 
       # Build
       - name: Build
