@@ -93,7 +93,7 @@
               "buildTarget": "productivity-planner:build:dev"
             }
           },
-          "defaultConfiguration": "staging"
+          "defaultConfiguration": "dev"
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
