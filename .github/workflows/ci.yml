@@ -50,6 +50,8 @@ jobs:
           mkdir environments
           echo "Creating production environment file..."
           echo "${{ secrets.ENVIRONMENT_PRODUCTION_FILE }}" >> environments/environment.ts
+          echo "printing environment file..."
+          cat environments/environment.ts
 
       # Build
       - name: Build
