@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { environment } from '../environments/environment';
+
 import { Auth } from './core/auth';
 
 @Component({
@@ -11,7 +11,7 @@ import { Auth } from './core/auth';
   styleUrl: './app.scss',
 })
 export class App {
-  url = environment.firebaseConfig.authDomain;
+ 
   protected readonly title = signal('productivity-planner');
   readonly #authenticationService = inject(Auth);
 
