@@ -6,6 +6,9 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   templateUrl: './home-banner.dumb.component.html',
   styleUrl: './home-banner.dumb.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'text-white d-flex flex-column justify-content-center align-items-center text-center',
+  },
 })
 export class HomeBannerDumbComponent {
   readonly title = input.required<string>();
