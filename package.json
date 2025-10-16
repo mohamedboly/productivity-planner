@@ -14,7 +14,7 @@
     "watch": "ng build --watch --configuration dev",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:ci": "ng test",
+    "test:watch": "jest --watch --onlyChanged --verbose",
     "lint": "ng lint"
   },
   "prettier": {
@@ -37,6 +37,8 @@
     "@angular/forms": "^20.3.4",
     "@angular/platform-browser": "^20.3.4",
     "@angular/router": "^20.3.4",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
