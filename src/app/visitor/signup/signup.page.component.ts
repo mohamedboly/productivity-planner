@@ -1,8 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AuthenticationService } from '../../core/port/authentication-service';
-import { UserStore } from '../../core/store/user.store';
+import { Router } from '@angular/router';
 import { Visitor } from '../../entity/user.interface';
+import { EmailAlreadyTakenError } from './email-already-taken.error';
+import { RegisterUserUseCase } from './register-user.use-case';
 
 @Component({
   standalone: true,
@@ -11,8 +12,9 @@ import { Visitor } from '../../entity/user.interface';
   styleUrl: './signup.page.component.scss',
 })
 export class SignupPageComponent {
-  readonly store = inject(UserStore);
-  readonly authenticationService = inject(AuthenticationService);
+  readonly isLoading = signal(false);
+  readonly #registerUserUseCase = inject(RegisterUserUseCase);
+  readonly #router = inject(Router);
 
   readonly name = signal('');
   readonly email = signal('');
@@ -21,12 +23,30 @@ export class SignupPageComponent {
 
   readonly isPasswordMatch = computed(() => this.password() === this.confirmPassword());
 
+  readonly emailAlreadyTakenError = signal<EmailAlreadyTakenError | null>(null);
+  readonly isEmailAlreadyTaken = computed(
+    () => this.emailAlreadyTakenError()?.email === this.email()
+  );
+
   onSubmit() {
+    this.isLoading.set(true);
+
     const visitor: Visitor = {
       name: this.name(),
       email: this.email(),
       password: this.password(),
     };
-    this.store.register(visitor);
+
+    this.#registerUserUseCase
+      .execute(visitor)
+      .then(() => this.#router.navigate(['/app/dashboard']))
+      .catch((error) => {
+        console.log(error);
+        if (error instanceof EmailAlreadyTakenError) {
+          this.emailAlreadyTakenError.set(error);
+        }
+        // Si on finit de traiter toutes les erreurs metiers et de les afficher dans l'UI,
+        // on peut envisager d'afficher une erreur générique pour les autres erreurs technique avec un handler global.
+      });
   }
 }
