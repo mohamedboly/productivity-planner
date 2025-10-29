@@ -63,6 +63,13 @@
             Email must be valid.
           </div>
         }
+
+        @if(isEmailAlreadyTaken()) {
+          <div class="form-text text-danger" data-testid="error-email-already-taken">
+            {{ emailAlreadyTakenError()?.message }}
+          </div>
+        }
+
         <!-- PASSWORD -->
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
