@@ -1,52 +1,34 @@
 import { Routes } from '@angular/router';
-import { DashboardPageComponent } from './membership/dashboard/dashboard.page.component';
-import { PlanningPageComponent } from './membership/planning/planning.page.component';
-import { ProfilePageComponent } from './membership/profile/profile.page.component';
-import { SettingPageComponent } from './membership/setting/setting.page.component';
-import { WorkdayPageComponent } from './membership/workday/workday.page.component';
-import { HomePageComponent } from './visitor/home/home.page.component';
-import { LoginPageComponent } from './visitor/login/login.page.component';
-import { SignupPageComponent } from './visitor/signup/signup.page.component';
+import { ShellLayoutComponent } from './membership/core/shell/shell.layout.component';
 
 export const routes: Routes = [
   {
-    title: 'Productivity Planner',
     path: '',
-    component: HomePageComponent,
-  },
-  {
-    path: 'signup',
-    component: SignupPageComponent,
-    title: 'Signup',
+    title: 'Productivity Planner',
+    loadComponent: () =>
+      import('./visitor/home/home.page.component').then((component) => component.HomePageComponent),
   },
   {
     path: 'login',
-    component: LoginPageComponent,
     title: 'Login',
+    loadComponent: () =>
+      import('./visitor/login/login.page.component').then(
+        (component) => component.LoginPageComponent
+      ),
   },
   {
-    path: 'app/dashboard',
-    component: DashboardPageComponent,
-    title: 'Dashboard',
+    path: 'signup',
+    title: 'Signup',
+    loadComponent: () =>
+      import('./visitor/signup/signup.page.component').then(
+        (component) => component.SignupPageComponent
+      ),
   },
   {
-    path: 'app/planning',
-    component: PlanningPageComponent,
-    title: 'Planning',
-  },
-  {
-    path: 'app/settings',
-    component: SettingPageComponent,
-    title: 'Settings',
-  },
-  {
-    path: 'app/workday',
-    component: WorkdayPageComponent,
-    title: 'Workday',
-  },
-  {
-    path: 'app/profile',
-    component: ProfilePageComponent,
-    title: 'Profile',
+    path: 'app',
+    title: 'Productivity Planner',
+    component: ShellLayoutComponent,
+    loadChildren: () =>
+      import('./membership/membership.routes').then((routes) => routes.membershipRoutes),
   },
 ];
