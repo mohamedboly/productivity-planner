@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../core/port/authentication-service';
 import { UserService } from '../../core/repository/user-service';
 import { UserStore } from '../../core/store/user.store';
-import { User, Visitor } from '../../entity/user.interface';
+import { User, Visitor } from '../../core/entity/user.interface';
 import { EmailAlreadyTakenError } from './email-already-taken.error';
 
 @Injectable({

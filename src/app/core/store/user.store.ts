@@ -1,6 +1,6 @@
 import { computed } from '@angular/core';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
-import { User } from '../../entity/user.interface';
+import { User } from '../entity/user.interface';
 
 interface UserState {
   user: User | undefined;
