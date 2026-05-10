@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../../entity/user.interface';
+import { User } from '../entity/user.interface';
 import { UserFirebaseService } from '../adapter/user-firebase-service';
 
 @Injectable({
